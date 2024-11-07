@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VAXCO</title>
+
+      <!-- CSS -->
+      <link rel="stylesheet" href="styles.css">
+    
+      <!-- Favicon -->
+      <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/pt/a/ac/CRVascodaGama.png">
+      <link rel="apple-touch-icon" href="apple-touch-icon.png">
+      
+      <!-- Fontes -->
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+      
+      <!-- Preload de recursos críticos -->
+      <link rel="preload" href="fonte-principal.woff2" as="font" type="font/woff2" crossorigin>
+      <link rel="preload" href="imagem-hero.jpg" as="image">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+
+      <style>
+
+        * {
+            padding:0;
+            margin:0;
+            vertical-align:baseline;
+            list-style:none;
+            border:0
+            colo
+        }
+
+
+        body{
+            font-family: "Red Hat Display", sans-serif;
+        }
+
+        .header{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            border-bottom: 4px solid black;
+            background-color: white;
+            
+        }
+
+        .title{
+            background-color: red;
+            padding: 10px;
+            border: 8px solid black;
+            border-radius: 10px;
+            
+        }
+
+        .conteudos{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-direction: column;
+            padding: 10px;
+            margin: 10px;
+            gap: 20px;
+            
+        }
+
+        .paragrafo{
+            border: 8px solid black;
+            border-radius: 10px;
+            padding: 10px;
+            background-color: white;
+        }
+
+        .navbar{
+            background-color: lightslategray;
+            width: auto;
+            height:max-content;
+        }
+        
+        .lista{
+            display: flex;
+            justify-content: center;
+            padding: 5px;
+            gap: 10px;
+        }
+
+        a{
+            text-decoration: none;
+            color: black;
+        }
+        
+        .navbar a:hover + .subnav{
+        
+            color: aqua;
+            display: block;
+            
+
+        }
+        
+        a:hover{
+            font-size: larger;
+        }
+
+        .subnav{
+            display: none;
+            transition: all 10s ease-in-out;
+        }
+
+        .flex{
+            display: flex;
+            gap: 20px;
+        }
+
+      </style>
+</head>
+<body>
+    
+
+    <header class="header">
+        <h1 class="title">Vasco da gama</h1>
+        <h2>O maior time do <strong>Brasil</strong></h2>
+    </header>
+
+    <nav class="navbar">
+        <ul class="lista">
+            <li>
+                <a href="">Home</a>
+                    <nav class="subnav">
+                        <ul>
+                            <li>Camisas</li>
+                            <li>Carros</li>
+                            <li>Sapatenis</li>
+                            <li>Cuecas</li>
+                        </ul>
+                    </nav>
+            </li>
+            <li>
+                <a href="">Vasco</a>
+            </li>
+            <li>
+                <a href="">Estadios</a>
+            </li>
+
+            
+        </ul>
+
+    </nav>
+    
+    <section class="conteudos">        
+        <p class="paragrafo">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+            Accusantium vel debitis temporibus labore error excepturi nam cumque reiciendis tempore.
+            Beatae aut ad in, nobis maxime repellendus delectus necessitatibus iusto natus!
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga neque porro assumenda, accusamus libero sit iure consequatur dolorum. Voluptatum labore voluptates eveniet quo praesentium sequi iure dignissimos quia vel aut!
+        </p>
+    
+        <p class="paragrafo">
+            <cite>Pedro alvarez cabral</cite> foi quem fundou o Vascão. <br>
+            Seu unico erro foi <samp>nao ter começado antes de 404</samp>
+        </p>
+
+        
+        <p class="paragrafo flex">
+           <img height="300px" src="https://upload.wikimedia.org/wikipedia/pt/a/ac/CRVascodaGama.png" alt="">
+           <img height="300px" src="https://upload.wikimedia.org/wikipedia/pt/a/ac/CRVascodaGama.png" alt="">
+           <img height="300px" src="https://upload.wikimedia.org/wikipedia/pt/a/ac/CRVascodaGama.png" alt="">
+           
+        </p>
+
+        <p class="paragrafo">
+            <audio src="sounds/hino.mp3" controls>
+        
+            </audio>
+        </p>
+
+        <p class="">
+            <p class="paragrafo">coragem<sup>treino</sup> é a fórmula para o sucesso dos jogos.</p>
+        </p>
+
+        <p class="">
+            <h3>Seus Jogadores</h3>
+            <ol>
+                <li>Panda do kung fu</li>
+                <li>Pedro anizio</li>
+                <li>Goku ssj 25</li>
+                <li>Naruto ssj 4</li>   
+            </ol>
+        </p>
+
+        <p>
+            <ul>
+                <li>
+                    <a href="https://github.com/jonsenapremiersoft/guiahtml">Descubra como desvender os valores da <strong>TELE SENA  </strong></a>
+                </li>
+                <li>
+                    <a href="">Como vencer o tigrinho</a>
+                </li>
+                <li>
+                    <a href="">Vantagens de cultivar penino japones sul coreano em casa</a>
+                </li>
+            </ul>
+        </p>
+
+    </section>
+
+    
+
+    <footer>
+
+    </footer>
+
+</body>
+</html>

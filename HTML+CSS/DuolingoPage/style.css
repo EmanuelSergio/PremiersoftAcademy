@@ -1,0 +1,279 @@
+* {
+    padding:0;
+    margin:0;
+    vertical-align:baseline;
+    list-style:none;
+    border:0;
+    font-family: Inter;
+
+    }
+
+.cinza-escuro{
+    color: #3C3C3C;
+}
+
+.cinza-leve{
+    color: #777777;
+    
+}
+
+.topicos{
+    font-size: 16px;
+}
+
+.conteudos{
+    font-size: 14px;
+}
+
+.d-flex{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.azul-claro{
+    color: #1CB0F6;
+}
+
+.between{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.icon{
+    margin-top: -10px;
+    margin-right: 15px;
+}
+
+.centralizar{
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.background-padrao{
+    background-image: url(assets/noiteEstrelas.svg);
+    background-color: #235390;
+}
+
+.header{
+    width: 100%;
+    height: 711px;
+}
+
+.header-body{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 100PX;
+}
+
+.cabecalho{
+    display: flex;
+    font-weight: 700;
+    font-size: 13px;
+    color: #FFFFFF;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 70px;
+
+}
+
+.subtitle{
+    width: 50%;
+   
+    align-items: center;
+}
+
+.subtitle-header{
+    margin: 20px auto;
+    color: #FFFFFF;
+    font-weight: 700;
+    size: 32px;
+    width: 60%;
+    text-align: center;
+}
+
+.div-buttons{
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.earth{
+    width: 40%;
+    margin-left: 70px;
+}
+
+.button-green{
+    display: block;
+    color: #FFFFFF  ;
+    background-color: #58CC02;
+    padding: 11.5px 110.91px 20.5px 111.09px;
+    border-radius: 16px;
+    border-bottom: 5px solid #58A700;
+}
+
+.button-blue{
+    display: block;
+    color: #FFFFFF  ;
+    background-color: transparent;
+    padding: 12.5px 50.41px 19.5px 50.59px;
+    border-radius: 16px;
+    border: 2px solid #042C60;
+    border-bottom: 4px solid  #042C60;
+    
+}
+
+a{
+    text-decoration: none;
+}
+
+.nav{
+    margin-top: 67px;
+    background-color: #0A4A82;
+    height: 74px;
+}
+
+.lista{
+    margin: auto 100px;
+    color: #FFFFFF;
+    display: flex;
+    justify-content: space-between;
+    
+    padding: 30px;
+}
+
+.main{
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.sub-texts{
+    display: flex;
+    flex-direction: column;
+    gap: 20px 0px;
+}
+
+.section{
+    display: flex;
+    padding: 40px 0px;
+    border-bottom: 2px solid #E5E5E5;
+    gap: 50px;
+    padding-inline: 50px;
+    align-items: center;
+}
+
+.sub-content{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.content{
+    display: flex;
+    margin-top: 70px;
+}
+
+.texts{
+    text-align: start;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+.center-image{
+    margin: 0px 50px;
+    width: 250px;
+}
+
+.section-footer{
+    display: flex;
+    gap: 40px;
+    margin-top: 120px;
+}
+
+.footer{
+    padding: 50px;
+}
+
+.header-footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+.h2-footer{
+    font-size: 29px;
+    color: #FFFFFF;
+}
+
+.button-small{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    width: 151px;
+    height: 47px;
+}
+
+.title-list-footer{
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: bolder;
+    
+}
+
+.item-list-footer{
+    font-size: 13px;
+    color: rgb(255, 255, 255, 0.5);
+    font-weight: bold;
+}
+
+.list{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 170px;
+}
+
+.sub{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.footer-footer{
+    margin-top: 150px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.last-list{
+    flex-direction: row;
+    width: 985px;
+    flex-wrap: wrap;
+}
+
+.efeito-botao{
+    transition:all 0.5s ease-in-out;
+}
+
+.efeito-botao:hover{
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: translateY(-4px); 
+}
+
+.destaque{
+    transition: all 0.4s ease-in-out;
+}
+
+.destaque:hover{
+    filter: brightness(120%);
+}
