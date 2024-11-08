@@ -1,0 +1,37 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+
+.meio{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+table{
+    border-collapse: collapse;
+
+}
+
+
+
+td, th{
+    padding: 10px;
+    border: 1px solid black;
+}
+
+th{
+    background-color: chartreuse;
+}
+
+tbody tr:nth-child(odd){
+    background-color: aqua;
+}
+
+tbody tr:hover{
+    background-color: darkslategray;
+}

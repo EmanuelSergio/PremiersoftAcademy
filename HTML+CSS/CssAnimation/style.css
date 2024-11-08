@@ -1,0 +1,52 @@
+
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: black;
+}
+
+.botao{
+
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 200px;
+    border: 1px solid ;
+}
+
+.fora{
+    display: flex;
+    gap: 20px;
+}
+
+.botao1{
+    transition: transform 250ms;
+}
+
+.botao1:hover{
+    transform: translateY(-10px);
+}
+
+.botao2{
+    transition: transform 500ms;
+    transition-timing-function: ease-in;
+}
+
+.botao2:hover{
+    transform: translateX(400px);
+}
+
+.botao3{
+    transition: transform 500ms cubic-bezier(0.1, 0.2, 0.3, 0.4);
+    transition-timing-function: ease-in;
+}
+
+.botao3:hover{
+    transform: translateX(400px) translateY(200px);
+}

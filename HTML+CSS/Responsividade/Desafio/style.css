@@ -31,10 +31,6 @@
     
 }
 
-.header-img-center{
-    margin-left: 30px;
-    
-}
 
 .all{
     width: 100%;
@@ -147,6 +143,9 @@ input::placeholder{
     top: -40px;
 }
 
+.icons-header-right-big{
+    display: none;
+}
 
 /* Tablet (768px e acima) */
 @media screen and (min-width: 768px) {
@@ -156,10 +155,26 @@ input::placeholder{
     }
 }
 
+.hamburguer{
+    display: block;
+    padding-left: 250px;
+}
+
+.aparecer-grande{
+    display: none;
+}
+
+.icons-header-left-big{
+    width: 264.66px;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content:  space-around
+}
+
 /* Desktop (992px e acima) */
 @media screen and (min-width: 992px) {
     .products {
-        width: 970px;
+        width: 80%;
         
         align-items: center;
         justify-content: space-between;
@@ -171,11 +186,49 @@ input::placeholder{
     main{
         width: 970px;
         display: flex;
+        flex-direction: column;
         justify-content: center;
         margin: 0 auto;
         gap: 80px;
     }
 
+    .email{
+        width: 30%;
+    }
   
+    .products{
+        justify-content: center;
+    }
+
+    .icons-header{
+        display: flex;
+        flex-direction: row-reverse;
+    }
+
+    .aparecer-grande{
+        display: block;
+    }
+
+    .icons-header{
+        border: 2px solid ;
+        border-radius: 20px;
+        padding: 5px;
+    }
+
+  
+    .hamburguer{
+        display: none;
+    }
+
+    .icons-header-right-big{
+        display: flex;
+        gap: 10px;
+    }
+
+    .header{
+        justify-content: space-between;
+    }
+
     
+
 }

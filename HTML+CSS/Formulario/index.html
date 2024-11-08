@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+    <style>
+
+        :root{
+            --cor-fundo: #272727;
+            --cor-laranja: #ff9100;
+            --cor-fundo-input: #cfcfcff6;
+        }
+
+        *{
+           
+            margin: 0px;
+            font-family: Arial, Helvetica, sans-serif;
+            border-radius: 10px;
+        }
+
+        a{
+            text-decoration: none;
+            color: black;
+            transition: transform 250ms;
+        }
+
+        a:hover{
+            transform: translateY(-10px);
+        }
+
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100%;
+            background-color: var(--cor-fundo)
+        }
+
+        main{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+        }
+
+        form{
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 20px;
+            width: 20%;
+        }
+
+        input, button{
+            background-color: var(--cor-fundo-input);
+            border-radius: 7px;
+            padding: 6px;
+            border: none;
+        }
+
+        button{
+            transition: transform 300ms;
+            background-color: var(--cor-laranja);
+        }
+
+        button:hover{
+            transform: translateY(-5px);
+        }
+        
+    </style>
+
+</head>
+<body>
+    
+    <main>
+
+        
+
+        <form id="formCadastro">
+
+            <h2>Login</h2>
+
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email">
+            <label for="senha">Senha</label>
+            <input type="password" id="senha" name="senha"></label>
+            <div>
+              
+            </div>
+
+            <p>Não possui conta?<br><strong><a href="">Cadastrar</a></strong></p>
+
+            <button type="submit">Enviar</button>
+        </form>
+    </main>
+
+    <script type="module" src="main.js"></script>
+
+</body>
+
+</html>
