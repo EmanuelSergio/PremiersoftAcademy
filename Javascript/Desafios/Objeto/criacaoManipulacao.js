@@ -8,6 +8,7 @@ Crie um objeto chamado 'biblioteca' que contenha os seguintes dados:
 
 // Solução
 
+/*
 const biblioteca = {
   nome: "dasda",
   livros: [],
@@ -35,3 +36,11 @@ biblioteca.adicionarLivro(novoLivro);
 
 console.log(biblioteca.livros.forEach((livro) => livro.titulo));
 console.log(biblioteca);
+*/
+
+const biblioteca = {
+  nome: "biblioteca Furb",
+  livros: [],
+
+  adicionarLivro: function (titulo) {},
+};
