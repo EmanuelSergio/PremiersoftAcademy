@@ -52,7 +52,7 @@ const numeros = [9, 5, 2, 1, 5];
 console.log(processarNumeros(numeros, dobrarNumero));
 console.log(processarNumeros(numeros, isPar));
 
-function funcaoQueTemVar() {
+function criarContadorVisitas() {
   let visitas = 0;
 
   return {
@@ -70,3 +70,18 @@ const contadorBlog = criarContadorVisitas();
 console.log(contadorBlog.registrarVisita()); // 1
 console.log(contadorBlog.registrarVisita()); // 2
 console.log(contadorBlog.obterTotalVisitas()); // 2
+
+function funcaoComMuitasFuncoes() {
+  return {
+    darOla: function () {
+      console.log("ola");
+    },
+    darBomDia: function () {
+      console.log("bom dia");
+    },
+  };
+}
+
+const variasFuncoes = funcaoComMuitasFuncoes();
+variasFuncoes.darBomDia();
+variasFuncoes.darOla();
