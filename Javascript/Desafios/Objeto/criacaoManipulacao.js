@@ -43,15 +43,15 @@ const biblioteca = {
   livros: [],
 
   adicionarLivro: function (titulo, autor, ano) {
-    this.livros.push({titulo, autor, ano})
+    this.livros.push({ titulo, autor, ano });
   },
 
   listarLivros: function () {
-    this.livros.forEach(a=>{
+    this.livros.forEach((a) => {
       console.log(a);
-    })
-  }
+    });
+  },
 };
 
-biblioteca.adicionarLivro('sadas', 'jade', 2005);
-biblioteca.listarLivros()
+biblioteca.adicionarLivro("sadas", "jade", 2005);
+biblioteca.listarLivros();
