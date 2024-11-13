@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style></style>
+    <title>Document</title>
+  </head>
+  <body>
+    <form
+      action=""
+      id="cadastroRealTime"
+      style="
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        height: 100vh;
+        gap: 10px;
+      "
+    >
+      <div style="display: flex; flex-direction: column; width: 200px">
+        <label for="">Nome</label>
+        <input type="text" name="" id="nomeUsuario" />
+        <label for="" id="nomeErro">Nome</label>
+      </div>
+      <div style="display: flex; flex-direction: column; width: 200px">
+        <label for="">Email:</label>
+        <input type="email" id="emailUsuario" />
+      </div>
+      <div style="display: flex; flex-direction: column; width: 200px">
+        <label for="">CPF:</label>
+        <input type="text" id="cpfUsuario" />
+      </div>
+      <div style="display: flex; flex-direction: column; width: 200px">
+        <label for="">Telefone:</label>
+        <input type="text" id="telefoneUsuario" />
+      </div>
+      <div style="display: flex; flex-direction: column; width: 200px">
+        <label for="">Data de nascimento:</label>
+        <input type="date" id="nascimentoUsuario" />
+      </div>
+      <div style="display: flex; flex-direction: column; width: 200px">
+        <label for="">Endereco:</label>
+        <input type="text" id="enderecoUsuario" />
+      </div>
+      <div style="display: flex; flex-direction: column; width: 200px">
+        <label for="">Senha:</label>
+        <input type="text" id="senhaUsuario" />
+      </div>
+      <div style="display: flex; flex-direction: column; width: 200px">
+        <label for="">Confirme sua senha:</label>
+        <input type="text" id="senhaConfirmadaUsuario" />
+      </div>
+      <div style="display: flex; gap: 10px; width: 200px">
+        <button type="submit">Enviar</button>
+        <button type="reset">Limpar</button>
+      </div>
+    </form>
+
+    <script>
+      const form = document.getElementById("cadastroRealTime");
+      const nome = document.getElementById("nomeUsuario");
+      const email = document.getElementById("emailUsuario");
+      const cpf = document.getElementById("cpfUsuario");
+      const telefone = document.getElementById("telefoneUsuario");
+      const nascimento = document.getElementById("nascimentoUsuario");
+      const endereco = document.getElementById("enderecoUsuario");
+      const senha = document.getElementById("senhaUsuario");
+      const senhaConfirmada = document.getElementById("senhaConfirmadaUsuario");
+
+        function validarNome(nome){
+            if (nome.value.length < 3) {
+                do
+            }
+        }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Validação em Tempo Real</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h2>Cadastro com Validação em Tempo Real</h2>
+
+    <form id="cadastroRealTime">
+      <div class="form-group">
+        <label for="usuario">Usuário:</label>
+        <input type="text" id="usuario" required />
+        <span class="error" id="usuarioErro"></span>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" required />
+        <span class="error" id="emailErro"></span>
+      </div>
+
+      <div class="form-group">
+        <label for="cpf">CPF:</label>
+        <input type="text" id="cpf" required />
+        <span class="error" id="cpfErro"></span>
+      </div>
+
+      <button type="submit" id="submitBtn" disabled>Cadastrar</button>
+    </form>
+
+    <script>
+      const form = document.getElementById("cadastroRealTime");
+      const usuario = document.getElementById("usuario");
+      const email = document.getElementById("email");
+      const cpf = document.getElementById("cpf");
+      const submitBtn = document.getElementById("submitBtn");
+
+      // Função para validar CPF
+      function validarCPF(cpf) {
+        cpf = cpf.replace(/[^\d]+/g, "");
+        if (cpf.length !== 11 || /^(\d)\1{10}$/.test(cpf)) return false;
+
+        let soma = 0;
+        for (let i = 0; i < 9; i++) {
+          soma += parseInt(cpf.charAt(i)) * (10 - i);
+        }
+        let digito1 = 11 - (soma % 11);
+        if (digito1 > 9) digito1 = 0;
+
+        soma = 0;
+        for (let i = 0; i < 10; i++) {
+          soma += parseInt(cpf.charAt(i)) * (11 - i);
+        }
+        let digito2 = 11 - (soma % 11);
+        if (digito2 > 9) digito2 = 0;
+
+        return cpf.charAt(9) == digito1 && cpf.charAt(10) == digito2;
+      }
+
+      // Validação em tempo real
+      usuario.addEventListener("input", validateFields);
+      email.addEventListener("input", validateFields);
+      cpf.addEventListener("input", validateFields);
+
+      function validateFields() {
+        let isValid = true;
+
+        // Validar usuário
+        if (usuario.value.length < 3) {
+          document.getElementById("usuarioErro").textContent =
+            "Mínimo 3 caracteres";
+          usuario.classList.add("invalid");
+          isValid = false;
+        } else {
+          document.getElementById("usuarioErro").textContent = "";
+          usuario.classList.remove("invalid");
+          usuario.classList.add("valid");
+        }
+
+        // Validar email
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email.value)) {
+          document.getElementById("emailErro").textContent = "Email inválido";
+          email.classList.add("invalid");
+          isValid = false;
+        } else {
+          document.getElementById("emailErro").textContent = "";
+          email.classList.remove("invalid");
+          email.classList.add("valid");
+        }
+
+        // Validar CPF
+        if (!validarCPF(cpf.value)) {
+          document.getElementById("cpfErro").textContent = "CPF inválido";
+          cpf.classList.add("invalid");
+          isValid = false;
+        } else {
+          document.getElementById("cpfErro").textContent = "";
+          cpf.classList.remove("invalid");
+          cpf.classList.add("valid");
+        }
+
+        submitBtn.disabled = !isValid;
+      }
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        if (!submitBtn.disabled) {
+          alert("Dados válidos! Enviando...");
+          // Aqui você enviaria os dados para o servidor
+        }
+      });
+    </script>
+  </body>
+</html>
