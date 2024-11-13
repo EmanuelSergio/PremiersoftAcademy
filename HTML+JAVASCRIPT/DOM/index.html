@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <ul style="display: flex; gap: 20px">
+        <li id="camisas">
+          servicos
+          <ul style="display: none" id="dropdown-menu">
+            <li>WEB</li>
+            <li>MOBILE</li>
+            <li>SPRING</li>
+          </ul>
+        </li>
+        <li>opaaa</li>
+        <li>opaaa</li>
+        <li>opaaa</li>
+        <li>opaaa</li>
+        <li>opaaa</li>
+      </ul>
+    </div>
+
+    <button id="myButton">aperta</button>
+
+    <div
+      id="mouse-events"
+      style="width: 200px; height: 200px; background: #f0f0f0"
+    >
+      Área de teste de eventos do mouse
+    </div>
+
+    <div id="log"></div>
+
+    <input type="text" id="keyboard-input" placeholder="Digite algo aqui" />
+    <div id="key-log"></div>
+
+    <form id="user-form">
+      <div>
+        <label for="name">Nome:</label>
+        <input type="text" id="name" required />
+      </div>
+      <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" required />
+      </div>
+      <div>
+        <label for="age">Idade:</label>
+        <input type="number" id="age" min="0" max="150" />
+      </div>
+      <button type="submit">Enviar</button>
+      <button type="reset">Limpar</button>
+    </form>
+
+    <div id="form-log"></div>
+
+    <div id="avo" style="padding: 20px; background: #f0f0f0">
+      Avô
+      <div id="pai" style="padding: 20px; background: #e0e0e0">
+        Pai
+        <div id="filho" style="padding: 20px; background: #d0d0d0">Filho</div>
+      </div>
+    </div>
+
+    <!--EVENTOS DA JANELA-->
+
+    <div id="scroll-area" style="height: 2000px">
+      <div
+        id="scroll-indicator"
+        style="position: fixed; top: 10px; right: 10px"
+      >
+        Scroll: 0%
+      </div>
+    </div>
+
+    <div id="log"></div>
+
+    <div id="todo-app">
+      <input type="text" id="new-task" placeholder="Nova tarefa" />
+      <button id="add-task">Adicionar</button>
+
+      <ul id="task-list">
+        <li>
+          Tarefa 1
+          <button class="delete">X</button>
+          <button class="edit">✎</button>
+        </li>
+        <li>
+          Tarefa 2
+          <button class="delete">X</button>
+          <button class="edit">✎</button>
+        </li>
+      </ul>
+    </div>
+
+    <style>
+      .completed {
+        text-decoration: line-through;
+        color: #888;
+      }
+      .delete,
+      .edit {
+        margin-left: 10px;
+        padding: 2px 5px;
+      }
+    </style>
+
+    <script src="main.js"></script>
+  </body>
+</html>
