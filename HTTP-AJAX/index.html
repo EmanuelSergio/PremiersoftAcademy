@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>User Registration</title>
+    <style>
+      /* CSS styles omitted for brevity */
+    </style>
+  </head>
+  <body>
+    <h1>User Registration</h1>
+    <form id="registration-form">
+      <label for="email">Email:</label>
+      <input type="text" id="email" name="email" required />
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required />
+
+      <button type="submit">Register</button>
+    </form>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <script>
+      import { createClient } from "@supabase/supabase-js";
+      // Initialize Supabase client
+      const supabaseUrl = "https://vowmahypfhlzronelhky.supabase.co";
+      const supabaseKey =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZvd21haHlwZmhsenJvbmVsaGt5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzEwOTEwNTMsImV4cCI6MjA0NjY2NzA1M30.0hfSR0FtTZkbrB36WxXYCVqT05WpBQFQFKAQaVa304o";
+      const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+      // Handle form submission
+      const form = document.getElementById("registration-form");
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        try {
+          // Create a new user in Supabase
+          const { data, error } = await supabase.auth.signUp({
+            email: email,
+            password: password,
+          });
+
+          if (error) {
+            alert("Error registering user: " + error.message);
+          } else {
+            alert("User registered successfully!");
+            form.reset();
+          }
+        } catch (error) {
+          alert("Error registering user: " + error.message);
+        }
+      });
+    </script>
+  </body>
+</html>
