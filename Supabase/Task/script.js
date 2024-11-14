@@ -31,12 +31,15 @@ async function loadTasks() {
 
 async function addTask() {
   const taskInput = document.getElementById("taskInput");
+  const data = document.getElementById("dateTaskInput").value;
   const title = taskInput.value.trim();
 
-  if (!title) return;
+  if (!title && !data) return;
 
   try {
-    const { error } = await supabaseClient.from("tasks").insert([{ title }]);
+    const { error } = await supabaseClient
+      .from("tasks")
+      .insert([{ title, data }]);
 
     if (error) throw error;
 
