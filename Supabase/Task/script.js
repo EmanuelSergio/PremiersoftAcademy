@@ -20,8 +20,14 @@ async function loadTasks() {
       taskElement.className = "task-item";
       console.log(task.id);
       taskElement.innerHTML = `
-                        <span>${task.title} - ${task.data}</span>
-                        <button onclick="deleteTask(${task.id})">Deletar</button>`;
+                        <li class="list-group-item d-flex justify-content-between">
+                          <span>${task.title} - ${task.data}</span>
+                          <div>
+                            <button class="btn btn-danger" onclick="deleteTask(${task.id})">Deletar</button>
+                            <button class="btn btn-info" onclick="updateTask(${task.id})">Atualizar</button>
+                          </div>
+                        </li>
+                        `;
       taskList.appendChild(taskElement);
     });
   } catch (error) {

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard de Dados</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h1 class="text-center mb-4">Dashboard de Dados</h1>
+
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Usuários</h5>
+              <div id="usuarios-container">Carregando...</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Posts</h5>
+              <div id="posts-container">Carregando...</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Todos</h5>
+              <div id="todos-container">Carregando...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-3">
+        <button id="atualizar" class="btn btn-primary">Atualizar Dados</button>
+      </div>
+    </div>
+
+    <script>
+      class Dashboard {
+        constructor() {
+          this.baseUrl = "https://jsonplaceholder.typicode.com";
+          this.inicializar();
+        }
+
+        async inicializar() {
+          this.bindElements();
+          this.bindEvents();
+          await this.carregarDados();
+        }
+
+        bindElements() {
+          this.usuariosContainer =
+            document.getElementById("usuarios-container");
+          this.postsContainer = document.getElementById("posts-container");
+          this.todosContainer = document.getElementById("todos-container");
+          this.btnAtualizar = document.getElementById("atualizar");
+        }
+
+        bindEvents() {
+          this.btnAtualizar.addEventListener("click", () =>
+            this.carregarDados()
+          );
+        }
+
+        async carregarDados() {
+          try {
+            this.mostrarCarregando();
+
+            const [usuarios, posts, todos] = await Promise.all([
+              fetch(`${this.baseUrl}/users`).then((r) => r.json()),
+              fetch(`${this.baseUrl}/posts`).then((r) => r.json()),
+              fetch(`${this.baseUrl}/todos`).then((r) => r.json()),
+            ]);
+
+            this.renderizarDados(usuarios, posts, todos);
+          } catch (erro) {
+            this.mostrarErro(erro);
+          }
+        }
+
+        mostrarCarregando() {
+          [
+            this.usuariosContainer,
+            this.postsContainer,
+            this.todosContainer,
+          ].forEach((container) => {
+            container.innerHTML =
+              '<div class="spinner-border" role="status"></div>';
+          });
+        }
+
+        renderizarDados(usuarios, posts, todos) {
+          this.usuariosContainer.innerHTML = `
+                    <p>Total de usuários: ${usuarios.length}</p>
+                    <ul class="list-group">
+                        ${usuarios
+                          .slice(0, 5)
+                          .map(
+                            (user) =>
+                              `<li class="list-group-item">${user.name}</li>`
+                          )
+                          .join("")}
+                    </ul>
+                `;
+
+          this.postsContainer.innerHTML = `
+                    <p>Total de posts: ${posts.length}</p>
+                    <ul class="list-group">
+                        ${posts
+                          .slice(0, 5)
+                          .map(
+                            (post) =>
+                              `<li class="list-group-item">${post.title.slice(
+                                0,
+                                30
+                              )}...</li>`
+                          )
+                          .join("")}
+                    </ul>
+                `;
+
+          this.todosContainer.innerHTML = `
+                    <p>Total de todos: ${todos.length}</p>
+                    <ul class="list-group">
+                        ${todos
+                          .slice(0, 5)
+                          .map(
+                            (todo) =>
+                              `<li class="list-group-item ${
+                                todo.completed ? "list-group-item-success" : ""
+                              }">${todo.title.slice(0, 30)}...</li>`
+                          )
+                          .join("")}
+                    </ul>
+                `;
+        }
+
+        mostrarErro(erro) {
+          [
+            this.usuariosContainer,
+            this.postsContainer,
+            this.todosContainer,
+          ].forEach((container) => {
+            container.innerHTML = `
+                            <div class="alert alert-danger">
+                                Erro ao carregar dados: ${erro.message}
+                            </div>
+                        `;
+          });
+        }
+      }
+
+      // Inicializar o dashboard
+      new Dashboard();
+    </script>
+  </body>
+</html>
