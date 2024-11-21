@@ -55,7 +55,54 @@
         </div>
       </div>
     </div>
+    <!-- Button trigger modal -->
+    <button
+      type="button"
+      class="btn btn-primary"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal"
+    >
+      Launch demo modal
+    </button>
 
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">...</div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
     <script>
       const searchInput = document.getElementById("searchInput");
       const regiaoInput = document.getElementById("searchRegiaoInput");
@@ -91,13 +138,15 @@
       });
 
       async function getRegiao(regiao) {
-        return await fetch(`https://restcountries.com/v3.1/region/${regiao}`)
-          .then((response) => {
-            return response.json();
-          })
-          .then((data) => {
-            return data;
-          });
+        if (regiao.length > 2) {
+          return await fetch(`https://restcountries.com/v3.1/region/${regiao}`)
+            .then((response) => {
+              return response.json();
+            })
+            .then((data) => {
+              return data;
+            });
+        }
       }
 
       async function searchCountries(searchTerm) {
@@ -123,7 +172,9 @@
 
       function createCountryCard(country) {
         return `
-               <div class="col-md-4">
+               <div class="col-md-4" onclick="AbrirDetalhes('${
+                 country.name.common
+               }')">
                    <div class="card country-card h-100">
                        <img src="${
                          country.flags.png
@@ -145,16 +196,25 @@
            `;
       }
 
-      regiaoInput.addEventListener("input", (e) => {
-        clearTimeout(debounceTimeout);
-        debounceTimeout = setTimeout(async function () {
-          const paises = await getRegiao(e.target.value.trim(" "));
-          console.log(paises);
+      function AbrirDetalhes(countryName) {
+        console.log(countryName);
+      }
 
-          paises.forEach((e) => {
-            countriesContainer.innerHTML += createCountryCard(e);
-          });
-        }, 300);
+      let debounceTimeout2;
+      regiaoInput.addEventListener("input", (e) => {
+        clearTimeout(debounceTimeout2);
+        debounceTimeout2 = setTimeout(async function () {
+          const paises = await getRegiao(e.target.value.trim(" "));
+          if (Array.isArray(paises) && paises.length > 0) {
+            console.log(paises);
+
+            paises.forEach((e) => {
+              countriesContainer.innerHTML += createCountryCard(e);
+            });
+          } else {
+            countriesContainer.innerHTML = "";
+          }
+        }, 400);
       });
 
       let debounceTimeout;
@@ -170,7 +230,7 @@
           } else {
             countriesContainer.innerHTML = "";
           }
-        }, 300);
+        }, 400);
       });
 
       loadTheme();
