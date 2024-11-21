@@ -55,28 +55,53 @@
         </div>
       </div>
     </div>
-    <!-- Button trigger modal -->
-    <button
-      type="button"
-      class="btn btn-primary"
-      data-bs-toggle="modal"
-      data-bs-target="#exampleModal"
-    >
-      Launch demo modal
-    </button>
 
-    <!-- Modal -->
-    <div
-      class="modal fade"
-      id="exampleModal"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
+    <div id="divModal"></div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      const searchInput = document.getElementById("searchInput");
+      const regiaoInput = document.getElementById("searchRegiaoInput");
+      const countriesContainer = document.getElementById("countriesContainer");
+      const loading = document.getElementById("loading");
+      const button = document.getElementById("themeButton");
+      const pagina = document.documentElement;
+      const temaAtual = pagina.getAttribute("data-bs-theme");
+      //const modalElement = document.getElementById("exampleModal");
+      const modalDetalhes = document.getElementById("divModal");
+
+      //const tema = localStorage.setItem(temaAtual, setThema());
+
+      async function buscarPaisPorNome(nomePais) {
+        return await fetch(`https://restcountries.com/v3.1/name/${nomePais}`)
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) => {
+            return data;
+          });
+      }
+
+      async function AbrirDetalhes(countryName) {
+        const pais = await buscarPaisPorNome(countryName);
+        console.log(pais[0].name.common);
+
+        modalDetalhes.innerHTML = criarModal(pais);
+        //modalDetalhes.show();
+      }
+
+      function criarModal(data) {
+        const pais = data[0];
+        return ` 
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog"  >
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+            <h1 class="modal-title fs-5" id="exampleModalLabel">${pais.name.common}</h1>
             <button
               type="button"
               class="btn-close"
@@ -97,22 +122,9 @@
           </div>
         </div>
       </div>
-    </div>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-      crossorigin="anonymous"
-    ></script>
-    <script>
-      const searchInput = document.getElementById("searchInput");
-      const regiaoInput = document.getElementById("searchRegiaoInput");
-      const countriesContainer = document.getElementById("countriesContainer");
-      const loading = document.getElementById("loading");
-      const button = document.getElementById("themeButton");
-      const pagina = document.documentElement;
-      const temaAtual = pagina.getAttribute("data-bs-theme");
-
-      //const tema = localStorage.setItem(temaAtual, setThema());
+      </div>
+      `;
+      }
 
       const loadTheme = () => {
         const savedTheme = localStorage.getItem("theme"); // Recupera o tema salvo
@@ -196,18 +208,13 @@
            `;
       }
 
-      function AbrirDetalhes(countryName) {
-        console.log(countryName);
-      }
-
       let debounceTimeout2;
       regiaoInput.addEventListener("input", (e) => {
         clearTimeout(debounceTimeout2);
         debounceTimeout2 = setTimeout(async function () {
           const paises = await getRegiao(e.target.value.trim(" "));
           if (Array.isArray(paises) && paises.length > 0) {
-            console.log(paises);
-
+            countriesContainer.innerHTML = " ";
             paises.forEach((e) => {
               countriesContainer.innerHTML += createCountryCard(e);
             });
