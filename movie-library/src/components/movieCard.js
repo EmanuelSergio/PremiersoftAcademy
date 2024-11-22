@@ -1,3 +1,5 @@
+import { searchMovieWithId } from "../services/api";
+
 export function renderMovies(movies) {
   const moviesList = document.getElementById("moviesList");
 
@@ -8,8 +10,26 @@ export function renderMovies(movies) {
   });
 }
 
+export async function abrirModal(movieName) {
+  //const movieJson = JSON.parse(movie);
+  //console.log(movieJson);
+
+  const movie = await searchMovieWithId().then((data) => {
+    return data;
+  });
+
+  console.log(movie);
+}
+
+//deixando a funcao de abrir o modal com
+window.abrirModal = abrirModal;
+//const palavra = "opa";
+
 export function createMovieCard(movie) {
-  return ` <div class="card col-4 align-items-center">
+  console.log();
+  const jsonMovie = JSON.stringify(movie);
+
+  return ` <div id="card" onclick="abrirModal('${movie.title}')" class="card col-4 align-items-center">
           <div class="card-body">
             <img
               src="${movie.poster}"

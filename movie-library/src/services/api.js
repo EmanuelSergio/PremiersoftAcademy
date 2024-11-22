@@ -36,4 +36,12 @@ export async function searchMovies(query) {
   }
 }
 
-export async function buscarTodos(query) {}
+export async function searchMovieWithId(name) {
+  const response = await axios.get(`${BASE_URL}/`, {
+    params: {
+      s: name,
+      type: "movie",
+      apikey: API_KEY,
+    },
+  });
+}

@@ -1,6 +1,5 @@
 import { searchMovies } from "./services/api.js";
 import { renderMovies } from "./components/movieCard.js";
-import { buscarTodos } from "./services/api.js";
 
 // TODO: Implementar a lógica de busca
 document.getElementById("searchButton").addEventListener("click", async () => {
