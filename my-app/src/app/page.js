@@ -86,10 +86,12 @@ export function Card(props) {
     </div>
   );
 }
-
-export function CardCars({ props, titulo = "carro" }) {
+export function CardCars({ props, titulo = "carro", onClick }) {
   return (
-    <div className="max-w-sm rounded-lg h-48 w-80 border-gray-200 bg-white shadow-lg p-6">
+    <div
+      className="max-w-sm rounded-lg h-48 w-80 border-gray-200 bg-white shadow-lg p-6 cursor-pointer"
+      onClick={() => onClick(props)} // Passa o item clicado para a função `onClick`
+    >
       <h1 className="text-xl font-bold text-gray-800">{titulo}</h1>
       <p className="text-lg text-gray-600 mt-2">Nome: {props.nome}</p>
       <h2 className="text-lg text-gray-600">Marca: {props.marca}</h2>
@@ -107,7 +109,6 @@ export default function Home() {
     setIsModalOpen(true);
   };
 
-  // Função para fechar o modal
   const handleCloseModal = () => {
     setIsModalOpen(false);
     setSelectedItem(null);
@@ -120,26 +121,27 @@ export default function Home() {
         <div className="flex justify-center">
           <Card listaPessoas={pessoa} />
         </div>
-        <div className="flex  justify-center items-center gap-10 pt-10">
-          {/* <CardCars listaCarros={carros.map((carro) => carro)} /> */}
-
-          {carros.map((carro, index) => {
-            return <CardCars key={index} props={carro} />;
-          })}
+        <div className="flex justify-center items-center gap-10 pt-10">
+          {carros.map((carro, index) => (
+            <CardCars key={index} props={carro} onClick={handleOpenModal} />
+          ))}
         </div>
-        <div className="flex  justify-center items-center gap-10 pt-10">
-          {carrosLuxo.map((carro, index) => {
-            return (
-              <CardCars
-                onClick={handleOpenModal}
-                key={index}
-                props={carro}
-                titulo={"carros de luxo"}
-              />
-            );
-          })}
+        <div className="flex justify-center items-center gap-10 pt-10">
+          {carrosLuxo.map((carro, index) => (
+            <CardCars
+              key={index}
+              props={carro}
+              titulo={"carros de luxo"}
+              onClick={handleOpenModal}
+            />
+          ))}
         </div>
       </div>
+      <Modal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        item={selectedItem}
+      />
     </>
   );
 }
