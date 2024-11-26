@@ -2,9 +2,9 @@
 
 import React, { useState } from "react";
 const pessoa = {
-  nome: "marcos",
-  idade: 12,
-  sexo: "M",
+  nome: "",
+  idade: 0,
+  sexo: "",
 };
 
 const carros = [
@@ -48,7 +48,7 @@ export function Modal({ isOpen, onClose, item }) {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="bg-white rounded-lg p-6 w-96">
+      <div className="bg-white rounded-lg p-6 w-96 max-h-screen overflow-y-auto">
         <h2 className="text-xl font-bold">Detalhes do Item</h2>
         <p className="mt-2">
           <strong>Nome:</strong> {item?.nome}
@@ -70,37 +70,34 @@ export function Modal({ isOpen, onClose, item }) {
   );
 }
 
-export function Card(props) {
+export function Card({ objeto }) {
   return (
     <div className="max-w-sm rounded-lg h-48 w-80 border border-gray-200 bg-white shadow-lg p-6">
       <h1 className="text-xl font-bold text-gray-800">Bom dia</h1>
-      <p className="text-lg text-gray-600 mt-2">
-        Nome: {props.listaPessoas.nome}
-      </p>
-      <h2 className="text-lg text-gray-600">
-        Idade: {props.listaPessoas.idade}
-      </h2>
+      <p className="text-lg text-gray-600 mt-2">Nome: {objeto.nome}</p>
+      <h2 className="text-lg text-gray-600">Idade: {objeto.idade}</h2>
       <p className="text-lg text-gray-600">
-        Sexo: {props.listaPessoas.sexo === "M" ? "Masculino" : "Feminino"}
+        Sexo: {objeto.sexo === "M" ? "Masculino" : "Feminino"}
       </p>
+      <p className="text-lg text-gray-600">É salvo: {}</p>
     </div>
   );
 }
-export function CardCars({ props, titulo = "carro", onClick }) {
+export function CardCars({ objeto, titulo = "carro", onClick }) {
   return (
     <div
-      className="max-w-sm rounded-lg h-48 w-80 border-gray-200 bg-white shadow-lg p-6 cursor-pointer"
+      className="max-w-sm rounded-lg min-h-48 w-80 border-gray-200 bg-white shadow-lg p-6 cursor-pointer"
       onClick={() => onClick(props)} // Passa o item clicado para a função `onClick`
     >
       <h1 className="text-xl font-bold text-gray-800">{titulo}</h1>
-      <p className="text-lg text-gray-600 mt-2">Nome: {props.nome}</p>
-      <h2 className="text-lg text-gray-600">Marca: {props.marca}</h2>
-      <p className="text-lg text-gray-600">Ano: {props.ano}</p>
+      <p className="text-lg text-gray-600 mt-2">Nome: {objeto.nome}</p>
+      <h2 className="text-lg text-gray-600">Marca: {objeto.marca}</h2>
+      <p className="text-lg text-gray-600">Ano: {objeto.ano}</p>
     </div>
   );
 }
 
-export default function Home() {
+export default function Home(props) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
 
@@ -114,23 +111,25 @@ export default function Home() {
     setSelectedItem(null);
   };
 
+  console.log(props);
+
   return (
     <>
       <Header />
-      <div className="flex-col w-screen p-10">
+      <div className="flex flex-col w-screen  p-10">
         <div className="flex justify-center">
-          <Card listaPessoas={pessoa} />
+          <Card objeto={props} />
         </div>
         <div className="flex justify-center items-center gap-10 pt-10">
           {carros.map((carro, index) => (
-            <CardCars key={index} props={carro} onClick={handleOpenModal} />
+            <CardCars key={index} objeto={carro} onClick={handleOpenModal} />
           ))}
         </div>
         <div className="flex justify-center items-center gap-10 pt-10">
           {carrosLuxo.map((carro, index) => (
             <CardCars
               key={index}
-              props={carro}
+              objeto={carro}
               titulo={"carros de luxo"}
               onClick={handleOpenModal}
             />
