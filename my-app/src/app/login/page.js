@@ -38,6 +38,7 @@ export default function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     console.log("Dados do Formulário:", entradaFormulario);
 
     // Aqui você pode enviar os dados para uma API ou manipulá-los conforme necessário
