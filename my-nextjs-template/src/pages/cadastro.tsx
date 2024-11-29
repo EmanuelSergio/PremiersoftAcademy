@@ -13,7 +13,7 @@ interface Repository {
   energy_level: number;
 }
 
-const url: string = "https://api.thecatapi.com/v1/breeds?limit=20";
+const url: string = "https://github.com/jonsenapremiersoft/next/";
 
 export default function Cadastro() {
   const [dogs, setDogs] = useState<Repository[]>([]);
