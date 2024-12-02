@@ -8,7 +8,7 @@ export default function Home() {
     <>
       <main className="min-h-screen flex ">
         <Sidebar></Sidebar>
-        <div className="max-w-2xl mx-auto pt-8">
+        <div className="max-w-2xl mx-auto pt-8 ">
           <div className="flex justify-between items-center mb-8">
             <h1 className="text-2xl font-bold">Theme Switcher Example</h1>
             <ThemeToggle />
