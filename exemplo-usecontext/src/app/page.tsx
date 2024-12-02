@@ -2,23 +2,29 @@
 import { ThemeToggle } from "@/components/ThemeToggle";
 import Home2 from "./home/page";
 import Sidebar from "@/components/SideBar";
+import NavBar from "@/components/Nav";
 
 export default function Home() {
   return (
     <>
-      <main className="min-h-screen flex ">
-        <Sidebar></Sidebar>
-        <div className="max-w-2xl mx-auto pt-8 ">
-          <div className="flex justify-between items-center mb-8">
-            <h1 className="text-2xl font-bold">Theme Switcher Example</h1>
-            <ThemeToggle />
-          </div>
+      <main className="min-h-screen flex flex-col ">
+        <NavBar></NavBar>
 
-          <div className="p-6 rounded-lg border border-gray-200 dark:border-gray-700">
-            <p>Este conteúdo se adapta ao tema atual!</p>
-          </div>
+        <div className="flex flex-1">
+          <Sidebar></Sidebar>
 
-          <Home2></Home2>
+          <div className="max-w-2xl mx-auto pt-8 ">
+            <div className="flex justify-between items-center mb-8">
+              <h1 className="text-2xl font-bold">Theme Switcher Example</h1>
+              <ThemeToggle />
+            </div>
+
+            <div className="p-6 rounded-lg border border-gray-200 dark:border-gray-700">
+              <p>Este conteúdo se adapta ao tema atual!</p>
+            </div>
+
+            <Home2></Home2>
+          </div>
         </div>
       </main>
     </>
