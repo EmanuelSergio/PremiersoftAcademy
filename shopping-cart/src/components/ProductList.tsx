@@ -1,5 +1,6 @@
 "use client";
 import { useCart } from "@/contexts/CartContext";
+import { getProducts } from "@/lib/api";
 
 const products = [
   {
@@ -17,7 +18,11 @@ const products = [
   // Adicione mais produtos conforme necessário
 ];
 
-export default function ProductList() {
+export default async function ProductList() {
+  const prods = await getProducts();
+
+  console.log(prods);
+
   const { addToCart } = useCart();
 
   return (

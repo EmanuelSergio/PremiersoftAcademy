@@ -11,6 +11,18 @@
       "name": "Camiseta Adidas",
       "price": 89.99,
       "image": "https://imgnike-a.akamaihd.net/1300x1300/024583IDA10.jpg"
+    },
+    {
+      "id": 1,
+      "name": "Tênis Nike",
+      "price": 299.99,
+      "image": "https://imgnike-a.akamaihd.net/1300x1300/024583IDA10.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Camiseta Adidas",
+      "price": 89.99,
+      "image": "https://imgnike-a.akamaihd.net/1300x1300/024583IDA10.jpg"
     }
   ]
 }
