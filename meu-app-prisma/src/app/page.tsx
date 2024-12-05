@@ -47,6 +47,7 @@ export default function Home() {
       },
       body: JSON.stringify({ id }),
     });
+    fetchTodos();
   };
 
   const fetchTodos = async () => {
@@ -97,11 +98,43 @@ export default function Home() {
             key={todo.id}
             className="p-2 bg-gray-100 rounded flex justify-between items-center"
           >
-            <span>{todo.title}</span>
+            {editingTodo && editingTodo.id === todo.id ? (
+              <input
+                type="text"
+                value={editingTodo.title}
+                onChange={(e) =>
+                  setEditingTodo((prev) =>
+                    prev ? { ...prev, title: e.target.value } : null
+                  )
+                }
+                className="border p-2 rounded"
+              />
+            ) : (
+              <span>{todo.title}</span>
+            )}
+
             <div className="flex gap-4">
-              {" "}
-              <button onClick={() => handleDelete(todo.id)}>Excluir</button>
-              <button>Editar</button>
+              {editingTodo && editingTodo.id === todo.id ? (
+                <button
+                  onClick={handleUpdate}
+                  className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+                >
+                  Salvar
+                </button>
+              ) : (
+                <button
+                  onClick={() => setEditingTodo(todo)}
+                  className="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600"
+                >
+                  Editar
+                </button>
+              )}
+              <button
+                onClick={() => handleDelete(todo.id)}
+                className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+              >
+                Excluir
+              </button>
             </div>
           </li>
         ))}

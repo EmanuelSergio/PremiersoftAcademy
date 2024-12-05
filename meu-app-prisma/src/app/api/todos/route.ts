@@ -28,7 +28,7 @@ export async function DELETE(request: Request) {
   return NextResponse.json(todo);
 }
 
-export async function UPDATE(request: Request) {
+export async function PUT(request: Request) {
   const json = await request.json();
 
   const { id, data } = json;
