@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, ReactNode } from "react";
-import Cookies from "js-cookie";
+import Cookies from "../../node_modules/@types/js-cookie";
 
 interface AuthContextType {
   isAuthenticated: boolean;
