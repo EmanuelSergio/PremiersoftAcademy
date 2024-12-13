@@ -71,13 +71,22 @@ export const livroController = {
   },
 
   async deletar(req: Request, res: Response) {
-    const id = parseInt(req.params.id);
-
-    if (isNaN(id)) {
-      throw new Error("ID INVALIDO");
-    }
-
     try {
+      const id = parseInt(req.params.id);
+
+      if (isNaN(id)) {
+        throw new Error("ID INVALIDO");
+      }
+
+      const checkResult = await pool.query(
+        "select * from livros where id = $1",
+        [id]
+      );
+
+      if (checkResult.rows.length === 0) {
+        throw new Error("Usuario nao existe");
+      }
+
       const result = await pool.query("delete from livros where id = $1", [id]);
       res.status(200).json({ message: "item deletado" });
     } catch (error) {
