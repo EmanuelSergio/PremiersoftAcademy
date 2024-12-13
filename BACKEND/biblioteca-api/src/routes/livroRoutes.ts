@@ -9,5 +9,8 @@ router.get("/livros", livroController.listar);
 router.get("/livros/:id", (req: Request, res: Response) => {
   livroController.buscarPorId(req, res);
 });
+router.put("/livros/:id", (req: Request, res: Response) => {
+  livroController.editarLivro(req, res);
+});
 
 export default router;

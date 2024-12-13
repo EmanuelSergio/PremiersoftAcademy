@@ -45,4 +45,28 @@ export const livroController = {
       res.status(500).json({ erro: "erro ao buscar o livro pelo id" });
     }
   },
+
+  async editarLivro(req: Request, res: Response) {
+    const id = parseInt(req.params.id);
+
+    if (isNaN(id)) {
+      return res.status(400).json({ error: "id invalido" });
+    }
+
+    const { titulo, autor, ano_publicacao } = req.body;
+
+    try {
+      const result = await pool.query(
+        "update livros set titulo = $1, autor = $2, ano_publicacao = $3 where id = $4",
+        [titulo, autor, ano_publicacao, id]
+      );
+
+      res
+        .status(200)
+        .json({ message: "livro atualizado com sucesso", livro: result });
+    } catch (error) {
+      console.error("error ao atualizar o livro ", error);
+      res.status(500).json({ error: "erro interno ao atualizar" });
+    }
+  },
 };
