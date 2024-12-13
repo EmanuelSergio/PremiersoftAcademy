@@ -27,4 +27,22 @@ export const livroController = {
       res.status(500).json({ erro: "erro ao listar os livros" });
     }
   },
+
+  async buscarPorId(req: Request, res: Response) {
+    try {
+      const id = parseInt(req.params.id);
+
+      if (isNaN(id)) {
+        return res.status(400).json({ erro: "ID inválido" });
+      }
+
+      const result = await pool.query("select * from livros where id = $1", [
+        id,
+      ]);
+      res.json(result.rows[0]);
+    } catch (error) {
+      console.error("erro ao buscar o livro pelo id");
+      res.status(500).json({ erro: "erro ao buscar o livro pelo id" });
+    }
+  },
 };
