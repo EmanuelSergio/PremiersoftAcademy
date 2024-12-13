@@ -6,6 +6,10 @@ export const livroController = {
     try {
       const { titulo, autor, ano_publicacao } = req.body;
 
+      if (!titulo || !autor) {
+        throw new Error("elementos n podem estar vazio");
+      }
+
       const result = await pool.query(
         "INSERT INTO livros (titulo, autor, ano_publicacao) values ($1, $2, $3) returning *",
         [titulo, autor, ano_publicacao]
