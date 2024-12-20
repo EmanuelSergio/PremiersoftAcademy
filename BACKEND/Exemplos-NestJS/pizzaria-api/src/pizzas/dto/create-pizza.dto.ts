@@ -5,6 +5,7 @@ import {
   IsBoolean,
   IsOptional,
   MinLength,
+  Min,
 } from 'class-validator';
 
 export class CreatePizzaDto {
@@ -20,6 +21,7 @@ export class CreatePizzaDto {
 
   @ApiProperty({ example: 45.9 })
   @IsNumber()
+  @Min(9)
   price: number;
 
   @ApiProperty({ example: true, required: false })
