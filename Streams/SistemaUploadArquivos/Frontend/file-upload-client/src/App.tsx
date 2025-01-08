@@ -1,26 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// src/App.tsx
+import React from "react";
+import FileUpload from "./components/FileUpload.tsx";
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="min-h-screen bg-gray-100 py-12">
+      <div className="container mx-auto">
+        <h1 className="text-3xl font-bold text-center text-gray-800 mb-8">
+          Sistema de Upload
+        </h1>
+        <FileUpload />
+      </div>
     </div>
   );
-}
+};
 
 export default App;
