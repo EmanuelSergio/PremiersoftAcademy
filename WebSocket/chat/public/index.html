@@ -4,33 +4,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chat da premiersoft</title>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-      integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
 
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js"
-      integrity="sha512-8BHxHDLsOHx+flIrQ0DrZcea7MkHqRU5GbTHmbdzMRnAaoCIkZ97PqZcXJkKZckMMhqfoeaJE+DNUVuyoQsO3Q=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js"></script>
 
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <form id="chat">
       <input type="text" name="username" placeholder="Digite seu usuario" />
-      <div class="messages"></div>
+      <div id="messages-container" class="messages"></div>
       <input type="text" name="message" placeholder="Digite sua mensagem" />
+      <input type="file" id="file-input" />
       <button type="submit">Enviar</button>
     </form>
     <script type="text/javascript">
       var socket = io("http://localhost:3000");
 
-      $("#chat form").submit(function (event) {
+      $("#chat").submit(function (event) {
         event.preventDefault();
 
         var author = $("input[name=username]").val();
@@ -38,14 +29,42 @@
 
         if (author.length && message.length) {
           var messageObject = {
-            author: author,
-            message: message,
+            author,
+            message,
           };
-
-          console.log(messageObject);
-
           socket.emit("sendMessage", messageObject);
         }
+      });
+
+      document.getElementById("file-input").addEventListener("change", (e) => {
+        const file = e.target.files[0];
+        const reader = new FileReader();
+
+        reader.onload = (event) => {
+          socket.emit("upload", {
+            name: file.name,
+            data: event.target.result,
+          });
+        };
+
+        reader.readAsArrayBuffer(file);
+      });
+
+      socket.on("fileUploaded", (fileInfo) => {
+        const link = document.createElement("a");
+        link.href = fileInfo.url;
+        link.textContent = fileInfo.name;
+        messagesContainer.appendChild(link);
+      });
+
+      socket.on("messages", (data) => {
+        const messagesContainer = document.getElementById("messages-container");
+        messagesContainer.innerHTML = "";
+        data.forEach((element) => {
+          const messageElement = document.createElement("div");
+          messageElement.textContent = ` ${element.author}: ${element.message}`;
+          messagesContainer.appendChild(messageElement);
+        });
       });
     </script>
   </body>

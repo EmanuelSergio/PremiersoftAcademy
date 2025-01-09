@@ -1,5 +1,6 @@
 const express = require("express");
 const path = require("path");
+const fs = require("fs");
 
 const app = express();
 
@@ -15,11 +16,24 @@ app.use("/", (req, res) => {
   res.render("index.html");
 });
 
+let messages = [];
+
+io.on("upload", (fileData) => {
+  const { name, data } = fileData;
+  const writeStream = fs.createWriteStream(`uploads/${name}`);
+  writeStream.write(Buffer.from(data));
+  writeStream.end();
+
+  io.emit("fileUploaded", { name, url: `/uploads/${name}` });
+});
+
 io.on("connection", (socket) => {
   console.log(`socket conectado: ${socket.id}`);
 
   socket.on("sendMessage", (data) => {
-    console.log(data);
+    messages.push(data);
+    console.log(messages);
+    io.emit("messages", messages);
   });
 });
 
