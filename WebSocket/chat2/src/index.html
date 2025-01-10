@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat Interface</title>
+    <style>
+      /* Seus estilos aqui... */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen, Ubuntu, Cantarell, sans-serif;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        background-color: #f5f5f5;
+      }
+
+      #messages {
+        flex: 1;
+        list-style-type: none;
+        padding: 2rem;
+        overflow-y: auto;
+        max-width: 800px;
+        margin: 0 auto;
+        width: 100%;
+      }
+
+      #messages li {
+        background: white;
+        padding: 1rem 1.5rem;
+        border-radius: 1rem;
+        margin-bottom: 1rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        max-width: 80%;
+      }
+
+      #form {
+        padding: 1rem;
+        background: white;
+        border-top: 1px solid #eee;
+        display: flex;
+        gap: 1rem;
+        max-width: 800px;
+        margin: 0 auto;
+        width: 100%;
+      }
+
+      #input {
+        flex: 1;
+        padding: 0.8rem 1rem;
+        border: 2px solid #eee;
+        border-radius: 0.5rem;
+        outline: none;
+        font-size: 1rem;
+        transition: border-color 0.2s;
+      }
+
+      #input:focus {
+        border-color: #007bff;
+      }
+
+      button {
+        background: #007bff;
+        color: white;
+        border: none;
+        padding: 0.8rem 1.5rem;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 500;
+        transition: background-color 0.2s;
+      }
+
+      button:hover {
+        background: #0056b3;
+      }
+
+      @media (max-width: 600px) {
+        #messages {
+          padding: 1rem;
+        }
+
+        #messages li {
+          max-width: 90%;
+        }
+
+        #form {
+          padding: 0.8rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="login-overlay">
+      <div class="login-box">
+        <h2>Bem-vindo ao Chat</h2>
+        <input type="text" id="name-input" placeholder="Seu nome" />
+        <button id="login-button">Entrar</button>
+      </div>
+    </div>
+
+    <ul id="messages"></ul>
+    <div id="typing-indicator"></div>
+    <form id="form">
+      <input
+        id="input"
+        autocomplete="off"
+        placeholder="Digite sua mensagem..."
+      />
+      <button type="submit">Enviar</button>
+    </form>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/scripts/ChatClient.js"></script>
+    <script>
+      let chatClient;
+
+      document.addEventListener("DOMContentLoaded", () => {
+        // Inicializa o ChatClient
+        chatClient = new ChatClient();
+
+        // Configura o evento de login
+        document
+          .getElementById("login-button")
+          .addEventListener("click", () => {
+            const nameInput = document.getElementById("name-input");
+            const name = nameInput.value.trim();
+
+            if (name) {
+              chatClient.registerUser(name);
+              document.getElementById("login-overlay").style.display = "none";
+            }
+          });
+
+        // Adiciona evento para Enter no input de nome
+        document
+          .getElementById("name-input")
+          .addEventListener("keypress", (event) => {
+            if (event.key === "Enter") {
+              const name = event.target.value.trim();
+              if (name) {
+                chatClient.registerUser(name);
+                document.getElementById("login-overlay").style.display = "none";
+              }
+            }
+          });
+      });
+    </script>
+  </body>
+</html>
