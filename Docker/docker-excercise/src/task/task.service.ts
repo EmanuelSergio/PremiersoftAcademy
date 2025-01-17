@@ -16,8 +16,8 @@ export class TaskService {
     return await this.taskRepository.save(task);
   }
 
-  findAll() {
-    return `This action returns all task`;
+  async findAll() {
+    return await this.taskRepository.find();
   }
 
   findOne(id: number) {
