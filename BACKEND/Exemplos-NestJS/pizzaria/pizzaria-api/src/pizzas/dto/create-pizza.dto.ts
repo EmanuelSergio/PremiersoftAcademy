@@ -24,6 +24,8 @@ export class CreatePizzaDto {
   @Min(9)
   price: number;
 
+  categoryId: number;
+
   @ApiProperty({ example: true, required: false })
   @IsBoolean()
   @IsOptional()

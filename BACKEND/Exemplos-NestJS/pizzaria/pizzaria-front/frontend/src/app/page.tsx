@@ -1,5 +1,5 @@
 import Image from "next/image";
-import PizzaCard from "@/components/pizzaCard";
+import PizzaCard from "@/components/features/pizza/pizzaCard";
 
 export default function Home() {
   return (
